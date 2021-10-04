@@ -1,27 +1,16 @@
 import pygame
 import sys
 
-# game window
-WIDTH, HEIGHT = 900, 500
-WIN = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption("Plumbr")
+pygame.init()   # initializing pygame
+sys.init() # initializing sys
 
-WHITE = (255, 255, 255)
+pygame.display.set_caption('Plumbr')    # creating title of game
+WIDTH, HEIGHT = 900, 500    # width: 900, height: 500
+window = pygame.display.set_mode((WIDTH, HEIGHT))   # creating window
 
-def window():
-    WIN.fill(WHITE)
-    pygame.display.update()
-
-
-def main(): # WINDOW CLOSES IMMEDIATELY 10/4/21 NEEDS FIX
-    running = True
-    try:
-        while running:
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT():
-                    run = False
-        pygame.quit()
-    except SystemExit:
-        pygame.quit()
-
-
+# game loop
+running = True
+while running:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
