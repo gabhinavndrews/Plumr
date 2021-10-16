@@ -15,7 +15,7 @@ plus_pipe = pygame.image.load('PlusPipe.png')
 curve_pipe = pygame.image.load('CurvedPipe.png')
 logo = pygame.image.load('Logo.png')
 
-WIDTH, HEIGHT = 760, 500    # width: 900, height: 500
+WIDTH, HEIGHT = 750, 500    # width: 900, height: 500
 window = pygame.display.set_mode((WIDTH, HEIGHT))   # creating window
 
 window.fill((0,0,0))
