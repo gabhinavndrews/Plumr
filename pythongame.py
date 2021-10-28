@@ -23,39 +23,45 @@ COLOUR = (0, 0, 0)
 pipe = straight_pipe
 
 
-def draw_window(pipe):
+def draw_window(pipe, coord):
     window.fill(COLOUR)
     window.blit(background, (0, 0))
     # RUN ALL GAME CODE BELOW THIS !!!!!!!!!!
     # level 1
-    window.blit(pipe, (25, 50))
+    window.blit(pipe, (coord[0], coord[1]))
 
 
-def rotate_tile(x):
-    print(x[0], x[1])
-    pipe_copy = straight_pipe.copy()
-
+def rotate_tile(x, pipe):
+    pipe_copy = pipe.copy()
     pipe_copy = pygame.transform.rotate(pipe_copy, 90)
     return pipe_copy
 
 
+def map_tile(Mouse_pos):
+    for i in range(25, 675, 50):
+        for j in range(50, 450, 50):
+            if(i <= Mouse_pos[0] <= i+50):
+                if(j <= Mouse_pos[1] <= j+50):
+                    return i, j
+
+
 def main():
-    pipe = straight_pipe
+    pipe = curve_pipe
     CLOCK = pygame.time.Clock()
     # game loop
     running = True
     while running:
         CLOCK.tick(FPS)
-        draw_window(pipe)
+        draw_window(pipe, (25, 50))
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
             if event.type == pygame.MOUSEBUTTONDOWN:
                 Mouse_pos = pygame.mouse.get_pos()
-                pipe_copy = rotate_tile(Mouse_pos)
+                tile_coordinates = map_tile(Mouse_pos)
+                pipe_copy = rotate_tile(Mouse_pos, pipe)
                 pipe = pipe_copy
-                draw_window(pipe)
-
+                draw_window(pipe, tile_coordinates)
         pygame.display.update()
     pygame.quit()
 
